@@ -1,8 +1,15 @@
 <?php
+require_once 'vendor/autoload.php';
+
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 
-require_once 'vendor/autoload.php';
+// fix for javascript fetch
+// https://stackoverflow.com/questions/36669911/post-not-retrieving-data-from-javascripts-fetch
+if (count($_POST) === 1) {
+    $_POST = json_decode(file_get_contents('php://input'), true);
+}
+
 
 function return_error($str)
 {
