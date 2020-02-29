@@ -1,0 +1,14 @@
+{
+    "name": "vlazic/php-email-server",
+    "type": "project",
+    "require": {
+        "swiftmailer/swiftmailer": "^6.2",
+        "vlucas/phpdotenv": "^4.1"
+    },
+    "authors": [
+        {
+            "name": "Vladimir Lazic",
+            "email": "vlazic@gmail.com"
+        }
+    ]
+}
