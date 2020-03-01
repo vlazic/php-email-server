@@ -3,12 +3,22 @@
     "type": "project",
     "require": {
         "swiftmailer/swiftmailer": "^6.2",
-        "vlucas/phpdotenv": "^4.1"
+        "vlucas/phpdotenv": "^4.1",
+        "filp/whoops": "^2.7",
+        "sabre/http": "^5.1"
     },
     "authors": [
         {
             "name": "Vladimir Lazic",
             "email": "vlazic@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "files": [
+            "helpers.php",
+            "parse_env.php",
+            "parse_request.php",
+            "send_email.php"
+        ]
+    }
 }
