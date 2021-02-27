@@ -17,9 +17,10 @@ function parse_env(HTTP\RequestInterface $request, HTTP\ResponseInterface $respo
             "SMTP_USER",
             "SMTP_PASSWORD",
             "SMTP_SERVER",
-            "SMTP_PORT"
+            "SMTP_ENCRYPTION",
+            "SMTP_PORT",
         ])
-        ->notEmpty();
+            ->notEmpty();
 
         // parse 'DEBUG' env
         $dotenv->required('DEBUG')->isBoolean();
@@ -27,7 +28,7 @@ function parse_env(HTTP\RequestInterface $request, HTTP\ResponseInterface $respo
     } catch (\Throwable $th) {
         return_error($request, $response, $th->getMessage() . ' You need to include it in .env file on server.');
     }
-        
+
     return [
         'token' => $_ENV["TOKEN"],
         'from_email' => $_ENV["FROM_EMAIL"],
@@ -35,6 +36,7 @@ function parse_env(HTTP\RequestInterface $request, HTTP\ResponseInterface $respo
         'smtp_user' => $_ENV["SMTP_USER"],
         'smtp_password' => $_ENV["SMTP_PASSWORD"],
         'smtp_server' => $_ENV["SMTP_SERVER"],
+        'smtp_encryption' => $_ENV["SMTP_ENCRYPTION"],
         'smtp_port' => $_ENV["SMTP_PORT"],
     ];
 }
