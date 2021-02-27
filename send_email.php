@@ -19,8 +19,9 @@ function send_email(HTTP\RequestInterface $request, HTTP\ResponseInterface $resp
         $message = (new Swift_Message($data['subject']))
             ->setFrom($data['from'])
             ->setTo($data['to'])
-            ->setBody($data['message']);
-    
+            ->setBody(strip_tags($data['message']))
+            ->addPart($data['message'], 'text/html');
+
         // Send the message
         $result = $mailer->send($message);
         
