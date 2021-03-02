@@ -44,5 +44,9 @@ function parse_request(HTTP\RequestInterface $request, HTTP\ResponseInterface $r
 
     $data['message'] =  strpos($post['message'], 'base64:') === 0 ? base64_decode(ltrim($post['message'], 'base64:')) : $post['message'];
 
+    if (is_array($post['attachments'])) {
+        $data['attachments'] = $post['attachments'];
+    }
+
     return $data;
 }

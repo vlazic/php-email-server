@@ -1,0 +1,15 @@
+{
+  "token": "",
+  "subject": "Test Mail",
+  "from_name": "PHP Test Mail",
+  "to": "me@example.com",
+  "to_name": "John Doe",
+  "message": "Testing email sending functionality.",
+  "attachments": [
+    {
+      "filename": "test.png",
+      "content_type": "image/png",
+      "body": "iVBORw0KGgoAAAANSUhEUgAAAA0AAAAICAIAAACtROKYAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAANElEQVQYlWO0szVmIAIwEaOIBHUsSGzuH+E2YoJM3K/vvF97+wdUUOB7rIU4NyO17aW2OgDv6wl/QcXQpAAAAABJRU5ErkJggg=="
+    }
+  ]
+}
