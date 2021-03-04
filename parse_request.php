@@ -34,15 +34,23 @@ function parse_request(HTTP\RequestInterface $request, HTTP\ResponseInterface $r
 
     $data['subject'] = $post['subject'];
 
-    $data['to'] = isset($post['to_name']) && !empty($post['to_name']) ?
+    $post['to'] = count(explode(',', $post['to'])) == 1 ? $post['to'] : explode(',', $post['to']);
+
+    if (is_string($post['to'])) {
+        $data['to'] = isset($post['to_name']) && !empty($post['to_name']) ?
         [$post['to'] => $post['to_name']] :
         [$post['to']];
+    } else if (is_array($post['to'])) {
+        $data['to'] = $post['to'];
+    } else {
+        return_error($request, $response, "Invalid type for 'to' field. Send single recipient or array of recipients");
+    }
 
     $data['from'] = isset($post['from_name']) && !empty($post['from_name']) ?
-        [$data['from_email'] => $post['from_name']] :
-        [$data['from_email'] => $data['from_name']];
+    [$data['from_email'] => $post['from_name']] :
+    [$data['from_email'] => $data['from_name']];
 
-    $data['message'] =  strpos($post['message'], 'base64:') === 0 ? base64_decode(ltrim($post['message'], 'base64:')) : $post['message'];
+    $data['message'] = strpos($post['message'], 'base64:') === 0 ? base64_decode(ltrim($post['message'], 'base64:')) : $post['message'];
 
     if (is_array($post['attachments'])) {
         $data['attachments'] = $post['attachments'];
